@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Example</title>
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+    </head>
+    <body>
+        <main>
+            <svg class='main' xmlns="http://www.w3.org/2000/svg"></svg>
+            <a class='toggle toggle-outside' href="#">Show</a>
+            <div class='panel'>
+                <a class='toggle toggle-inside' href="#">Hide</a>
+                <button class='play'>PLAY</button>
+                <div class='color-chooser'>
+                    <h3>Choose Color:</h3>
+                    <div>
+                        <ul>
+                            <li><a href="#" class='color red'>Red</a></li>
+                            <li><a href="#" class='color green'>Green</a></li>
+                            <li><a href="#" class='color blue'>Blue</a></li>
+                            <li><a href="#" class='color yellow'>Yellow</a></li>
+                            <li><a href="#" class='color white'>White</a></li>
+                            <li><a href="#" class='color brown'>Brown</a></li>
+                            <li><a href="#" class='color purple'>Purple</a></li>
+                            <li><a href="#" class='color gray'>Gray</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <svg class='line-chart' xmlns="http://www.w3.org/2000/svg"></svg>
+            </div>
+        </main>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="javascript/app.js"></script>
+    </body>
+</html>

@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding:0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+svg.main {
+    position: absolute;
+    background-color: #99CCFF;
+    width: 100%;
+    height: 100%;
+}
+
+a.toggle {
+    position: absolute;
+    width: 125px;
+    height: 50px;
+    background-color: blue;
+    text-align: center;
+    color: white;
+    line-height: 50px;
+}
+
+a.toggle-outside {
+    left: 0px;
+    bottom: 0px;
+    display: none;
+    opacity: 0.9;
+}
+
+.panel {
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    height: 250px;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.8;
+}
+
+    .panel a.toggle-inside {
+        right: 0px;
+        top: -50px;
+    }
+
+    .play {
+        position: absolute;
+        top: 30px;
+        left: 10px;
+        padding: 15px 20px;
+    }
+
+    .panel h3 {
+        color: white;
+    }
+
+    svg.line-chart {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 50%;
+        background-color: #CF0000;
+    }
+
+    .color-chooser {
+        height: 50%;
+        margin-left: 125px;
+    }
+
+    .color-chooser div {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .color-chooser ul {
+        display: table;
+        padding: 10px;
+    }
+
+    .color-chooser li {
+        display: table-cell;
+        padding-right: 10px;
+    }
+    .color-chooser a.color {
+        width: 100px;
+        height: 100%;
+        display: block;
+        text-align: center;
+        line-height: 50px;
+    }
+
+    .color-chooser a.red {
+        background-color: red;
+    }
+
+    .color-chooser a.green {
+        background-color: green;
+    }
+
+    .color-chooser a.blue {
+        background-color: blue;
+    }
+
+    .color-chooser a.yellow {
+        background-color: yellow;
+    }
+
+    .color-chooser a.white {
+        background-color: white;
+    }
+
+    .color-chooser a.brown {
+        background-color: brown;
+    }
+
+    .color-chooser a.purple {
+        background-color: purple;
+    }
+
+    .color-chooser a.gray {
+        background-color: gray;
+    }
+
+
