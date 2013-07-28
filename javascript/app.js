@@ -23,6 +23,32 @@ var lineChart = (function() {
         pixelPerUnitX = (maxX - (2 * padding)) / maxData;
         pixelPerUnitY = (maxY - (2 * padding)) / (maxValue - minValue);
 
+        var lineXY = [
+            [padding, padding, padding, startY],
+            [padding, startY, maxX-padding, startY]
+        ];
+
+        svg.selectAll('.line-xy')
+            .data(lineXY)
+            .enter()
+                .append("line")
+                .attr("class", "line-xy")
+                .attr("style", "stroke:white;")
+                .attr("x1", function(d) { return d[0]; })
+                .attr("y1", function(d) { return d[1]; })
+                .attr("x2", function(d) { return d[2]; })
+                .attr("y2", function(d) { return d[3]; });
+
+        svg.selectAll("text")
+            .data(['-'])
+            .enter()
+                .append("text")
+                .text( function (d) { return "Average Radius of Circles: " + d ; })
+                .attr("x", padding)
+                .attr("y", padding-5)
+                .attr("font-family", "sans-serif")
+                .attr("font-size", "14px")
+                .attr("fill", "white");        
     }
 
     function setData(newData) {
@@ -37,10 +63,6 @@ var lineChart = (function() {
         }
     }
 
-    function getRandom(min, max) {
-        return parseInt(Math.random() * (max - min) + min);
-    };
-
     function getX(value) {
         return startX + (value * pixelPerUnitX);
     };
@@ -52,9 +74,11 @@ var lineChart = (function() {
     function draw(newData) {
         setData(newData);
 
+        svg.selectAll("text")
+            .text("Average Radius of Circles: " + newData);
+
         svg.selectAll(".line")
            .data(lineData)
-               .attr("style", "stroke:white;")
                .attr("x1", function(d, i) { return getX(i); })
                .attr("y1", function(d, i) { return getY(d[0], i); })
                .attr("x2", function(d, i) { return getX(i + 1); })
@@ -66,7 +90,7 @@ var lineChart = (function() {
                .attr("x1", function(d, i) { return getX(i); })
                .attr("y1", function(d, i) { return getY(d[0], i); })
                .attr("x2", function(d, i) { return getX(i + 1); })
-               .attr("y2", function(d, i) { return getY(d[1], i); })
+               .attr("y2", function(d, i) { return getY(d[1], i); });
     };
 
     return {
@@ -108,11 +132,11 @@ var mainSVG = (function() {
         svg.selectAll(".circle")
            .data(data)
            .enter()
-           .append("circle")
-           .attr("class", "circle")
-           .attr("cx", function(d, i) { return getRandom(0 + d, maxX-d); })
-           .attr("cy", function(d, i) { return getRandom(0 + d, maxY-d); })
-           .attr("r", function(d, i) { return d; });
+               .append("circle")
+               .attr("class", "circle")
+               .attr("cx", function(d, i) { return getRandom(0 + d, maxX-d); })
+               .attr("cy", function(d, i) { return getRandom(0 + d, maxY-d); })
+               .attr("r", function(d, i) { return d; });
     };
 
     function draw() {
@@ -151,8 +175,13 @@ var mainSVG = (function() {
 
 
 $(document).ready(function(){
-    mainSVG.init(100, 10, 30);
-    lineChart.init(300, 15, 25);
+    var numberOfCircles = 100,
+        minRadius = 10,
+        maxRadius = 30,
+        maxLineChartRecord = 300;
+
+    mainSVG.init(numberOfCircles, minRadius, maxRadius);
+    lineChart.init(maxLineChartRecord, minRadius, maxRadius);
 
     
     function play() {
@@ -175,15 +204,15 @@ $(document).ready(function(){
         }
     });
 
-    $('a.toggle ').click(function() {
+    $('a.toggle').click(function() {
         $('.panel').toggle('fast', function() {
             $('a.toggle-outside').toggle();
         });
         return false;
     });
 
-    $('a.color ').click(function() {
-        var fill = $(this).attr('class').replace("color ", "");
+    $('a.color').click(function() {
+        var fill = $(this).attr('class').replace("color", "").replace(" ", "");
         mainSVG.setFill(fill);
         return false;
     });
