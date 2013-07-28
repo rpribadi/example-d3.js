@@ -52,18 +52,21 @@ var lineChart = (function() {
     function draw(newData) {
         setData(newData);
 
-        svg.selectAll(".line").remove();
-
         svg.selectAll(".line")
            .data(lineData)
+               .attr("style", "stroke:white;")
+               .attr("x1", function(d, i) { return getX(i); })
+               .attr("y1", function(d, i) { return getY(d[0], i); })
+               .attr("x2", function(d, i) { return getX(i + 1); })
+               .attr("y2", function(d, i) { return getY(d[1], i); })
            .enter()
-           .append("line")
-           .attr("class", "line")
-           .attr("style", "stroke:white;")
-           .attr("x1", function(d, i) { return getX(i); })
-           .attr("y1", function(d, i) { return getY(d[0], i); })
-           .attr("x2", function(d, i) { return getX(i + 1); })
-           .attr("y2", function(d, i) { return getY(d[1], i); })
+               .append("line")
+               .attr("class", "line")
+               .attr("style", "stroke:white;")
+               .attr("x1", function(d, i) { return getX(i); })
+               .attr("y1", function(d, i) { return getY(d[0], i); })
+               .attr("x2", function(d, i) { return getX(i + 1); })
+               .attr("y2", function(d, i) { return getY(d[1], i); })
     };
 
     return {
